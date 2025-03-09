@@ -6,7 +6,7 @@ return {
     },
     config = function()
         require("render-markdown").setup({
-            -- Adjust settings as per your preference
+            render_modes = true,
             theme = "light", -- 'dark' or 'light'
             auto_enable = true, -- Auto-enable rendering for markdown buffers
             conceal = true, -- Use conceal feature to hide markdown syntax
