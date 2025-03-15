@@ -1,17 +1,25 @@
 return {
-  "nvimtools/none-ls.nvim",
-  config = function()
-    local null_ls = require("null-ls")
-    null_ls.setup({
-      sources = {
-        null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.prettier,
-        null_ls.builtins.diagnostics.erb_lint,
-        null_ls.builtins.diagnostics.rubocop,
-        null_ls.builtins.formatting.rubocop,
-      },
-    })
+	{
+		"nvimtools/none-ls.nvim",
+		config = function()
+			local null_ls = require("null-ls")
+			null_ls.setup({
+				sources = {
+					-- Prettier handles HTML, CSS, JavaScript, and JSON formatting.
+					null_ls.builtins.formatting.prettier.with({
+						filetypes = { "html", "css", "javascript", "json" },
+					}),
+					-- Stylua for Lua formatting.
+					null_ls.builtins.formatting.stylua,
+					-- Black for Python formatting.
+					null_ls.builtins.formatting.black,
+					-- Clang-format for C/C++ formatting.
+					null_ls.builtins.formatting.clang_format,
+				},
+			})
 
-    vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
-  end,
+			-- Optional: Map a key to format the current buffer.
+			vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+		end,
+	},
 }

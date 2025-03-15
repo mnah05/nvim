@@ -5,7 +5,7 @@ return {
 	priority = 1000, -- Ensure it loads before other UI-related plugins
 	config = function()
 		require("rose-pine").setup({
-			disable_background = true, -- Enables transparency
+			disable_background = false, -- Enables transparency
 		})
 		vim.cmd.colorscheme("rose-pine") -- Alternative syntax
 	end,

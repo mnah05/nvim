@@ -39,10 +39,13 @@ return {
 
 			-- Common configuration for servers
 			local servers = {
-				ts_ls = {},
-				html = {},
-				lua_ls = {},
-				pyright = {},
+				ts_ls = {}, -- JavaScript/TypeScript
+				html = {}, -- HTML
+				cssls = {}, -- CSS
+				jsonls = {}, -- JSON
+				lua_ls = {}, -- Optional: Lua
+				pyright = {}, -- Optional: Python
+				tailwindcss = {}, -- TailwindCSS
 			}
 
 			for server, config in pairs(servers) do
@@ -68,9 +71,5 @@ return {
 				},
 			})
 		end,
-	},
-	{
-		"hrsh7th/cmp-nvim-lsp",
-		lazy = true,
 	},
 }
