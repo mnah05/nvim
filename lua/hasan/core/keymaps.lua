@@ -10,9 +10,9 @@ keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save the file" })
 keymap.set("n", "<leader>wq", ":wq<CR>", { desc = "Save and quit the file" })
 keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit Neovim" })
-keymap.set({"i","v"}, "qq","<Esc>",{noremap = true,silent = true})
+keymap.set({ "i", "v" }, "qq", "<Esc>", { noremap = true, silent = true })
 -- use to open Explore [for now]
-keymap.set("n","<leader>ex",":Ex<CR>", { noremap = true, silent = true })
+keymap.set("n", "<leader>ex", ":Ex<CR>", { noremap = true, silent = true })
 
 -- Window navigation
 keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move focus to the left window" })
@@ -25,3 +25,8 @@ vim.keymap.set("n", "<Up>", "<Nop>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Down>", "<Nop>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Left>", "<Nop>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Right>", "<Nop>", { noremap = true, silent = true })
+
+-- For nvim-tree
+vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true }) -- Toggle tree
+vim.keymap.set("n", "<leader>r", ":NvimTreeRefresh<CR>", { noremap = true, silent = true }) -- Refresh
+vim.keymap.set("n", "<leader>n", ":NvimTreeFindFile<CR>", { noremap = true, silent = true }) -- Find file
