@@ -6,37 +6,32 @@ return {
 		config = function()
 			local lackluster = require("lackluster")
 			lackluster.setup({
-				-- Customize backgrounds with dark tones
+				-- Gorgoroth-inspired dark aesthetic
 				tweak_background = {
-					normal = "#1a1b26", -- Dark background with slight blue tint
-					telescope = "#16161e", -- Slightly darker for contrast
-					menu = "#1f2335", -- Darker blue shade
-					popup = "#1a1b26", -- Match editor background
+					normal = "#000000", -- Deep black
+					telescope = "#111111", -- Slight raise for contrast
+					menu = "#1a1a1a", -- Slightly lighter for visibility
+					popup = "#000000", -- Stay consistent
 				},
-				-- Enhanced syntax highlighting
 				tweak_syntax = {
-					comment = "#565f89", -- Muted blue for comments
-					string = "#9ece6a", -- Vibrant green for strings
-					keyword = "#bb9af7", -- Purple for keywords
-					function_name = "#7aa2f7", -- Bright blue for functions
-					variable = "#c0caf5", -- Light blue for variables
-					constant = "#ff9e64", -- Orange for constants
-					operator = "#89ddff", -- Light blue for operators
+					comment = "#333333", -- Dim grey for subtle comments
+					string = "#9b8d7f", -- Desaturated brown-green
+					keyword = "#5f8787", -- Cold steel blue-green
+					function_name = "#888888", -- Faded steel
+					variable = "#aaaaaa", -- Near white for clarity
+					constant = "#8c7f70", -- Washed-out yellow-brown
+					operator = "#999999", -- Mid grey
 				},
-				-- UI elements styling
 				tweak_ui = {
-					line_numbers = "#3b4261", -- Subdued color for line numbers
-					cursor_line = "#292e42", -- Subtle highlight for current line
-					selection = "#2e3c64", -- Blue-tinted selection
-					status_line = "#1f2335", -- Dark status line
+					line_numbers = "#333333", -- Match brightBlack
+					cursor_line = "#111111", -- Very slight highlight
+					selection = "#1f1f1f", -- Soft selection background
+					status_line = "#1a1a1a", -- Muted and clean
 				},
-				-- Enhance with italics for certain elements
-				italics = true,
-				-- Medium contrast for balance
-				contrast = "medium",
+				italics = true, -- Keep some flair
+				contrast = "low", -- Lowered for that black metal feel
 			})
 
-			-- Apply the colorscheme
 			vim.cmd.colorscheme("lackluster")
 		end,
 	},
