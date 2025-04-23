@@ -16,13 +16,13 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		lazy = false,
-		dependencies = { "hrsh7th/cmp-nvim-lsp" },
+		dependencies = { "saghen/blink.cmp" },
 		config = function()
-			local cmp_nvim_lsp = require("cmp_nvim_lsp")
-			local capabilities = cmp_nvim_lsp.default_capabilities()
 			local lspconfig = require("lspconfig")
+			local cmp_nvim_lsp = require("blink.cmp")
 
-			-- Define an on_attach function to map keys after the language server attaches to the buffer
+			local capabilities = cmp_nvim_lsp.get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 			local on_attach = function(client, bufnr)
 				local bufopts = { noremap = true, silent = true, buffer = bufnr }
 				vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
@@ -37,15 +37,14 @@ return {
 				)
 			end
 
-			-- Common configuration for servers
 			local servers = {
-				ts_ls = {}, -- JavaScript/TypeScript
-				html = {}, -- HTML
-				cssls = {}, -- CSS
-				jsonls = {}, -- JSON
-				lua_ls = {}, -- Optional: Lua
-				pyright = {}, -- Optional: Python
-				tailwindcss = {}, -- TailwindCSS
+				html = {},
+				cssls = {},
+				jsonls = {},
+				lua_ls = {},
+				pyright = {},
+				tailwindcss = {},
+				gopls = {},
 			}
 
 			for server, config in pairs(servers) do
@@ -54,7 +53,7 @@ return {
 				lspconfig[server].setup(config)
 			end
 
-			-- Improved C/C++ configuration with clangd
+			-- Special setup for clangd
 			lspconfig.clangd.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
