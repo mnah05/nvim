@@ -15,8 +15,6 @@ return {
 					}),
 					-- Black for Python formatting.
 					null_ls.builtins.formatting.black,
-					-- gofumpt for Go lang formatting
-					null_ls.builtins.formatting.gofumpt,
 					-- Clang-format for C/C++ formatting with 4-space tab.
 					null_ls.builtins.formatting.clang_format.with({
 						extra_args = { "--style={IndentWidth: 4, UseTab: Always}" },
