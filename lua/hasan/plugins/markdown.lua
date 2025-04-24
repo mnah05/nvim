@@ -1,9 +1,5 @@
 return {
     "MeanderingProgrammer/render-markdown.nvim",
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter",
-        "echasnovski/mini.nvim", -- Change this based on your setup
-    },
     config = function()
         require("render-markdown").setup({
             render_modes = true,
