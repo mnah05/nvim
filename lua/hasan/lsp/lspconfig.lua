@@ -38,12 +38,8 @@ return {
 			end
 
 			local servers = {
-				html = {},
-				cssls = {},
-				jsonls = {},
 				lua_ls = {},
 				pyright = {},
-				tailwindcss = {},
 				gopls = {},
 			}
 
