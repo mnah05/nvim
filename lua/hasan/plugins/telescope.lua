@@ -7,7 +7,7 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		"nvim-telescope/telescope-live-grep-args.nvim",
 		"nvim-telescope/telescope-ui-select.nvim",
-		"stevearc/dressing.nvim", -- for prettier vim.ui interfaces
+		"stevearc/dressing.nvim",
 	},
 	config = function()
 		local telescope = require("telescope")
@@ -46,9 +46,7 @@ return {
 				sorting_strategy = "ascending",
 			},
 			pickers = {
-				find_files = {
-					hidden = true,
-				},
+				find_files = { hidden = true },
 			},
 			extensions = {
 				fzf = {
@@ -78,5 +76,15 @@ return {
 		keymap.set("n", "<leader>ss", "<cmd>Telescope live_grep<CR>", { desc = "Live grep in cwd" })
 		keymap.set("n", "<leader>sc", "<cmd>Telescope grep_string<CR>", { desc = "Find string under cursor" })
 		keymap.set("n", "<leader>sg", "<cmd>Telescope live_grep_args<CR>", { desc = "Live grep with args" })
+
+		-- 🎨 Kanagawa Paper Ink style highlights for Telescope
+		local colors = require("kanagawa-paper.colors").setup().palette
+		vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = colors.sumiInk0, fg = colors.fujiWhite })
+		vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = colors.sumiInk0, fg = colors.sumiInk2 })
+		vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = colors.sumiInk1 })
+		vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = colors.sumiInk1, fg = colors.sumiInk2 })
+		vim.api.nvim_set_hl(0, "TelescopePromptTitle", { fg = colors.roninYellow, bold = true })
+		vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { fg = colors.fujiGray })
+		vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = colors.waveAqua1 })
 	end,
 }
