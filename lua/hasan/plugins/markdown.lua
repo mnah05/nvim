@@ -1,13 +1,20 @@
 return {
-    "MeanderingProgrammer/render-markdown.nvim",
-    config = function()
-        require("render-markdown").setup({
-            render_modes = true,
-            theme = "light", -- 'dark' or 'light'
-            auto_enable = true, -- Auto-enable rendering for markdown buffers
-            conceal = true, -- Use conceal feature to hide markdown syntax
-            filetypes = { "markdown", "md" }, -- Ensure it works for both .md & markdown files
-            -- More settings can be added as needed
-        })
-    end,
+	"MeanderingProgrammer/render-markdown.nvim",
+	config = function()
+		require("render-markdown").setup({
+			render_modes = true,
+			theme = "light",
+			auto_enable = false, -- Turn off global auto-enable
+			conceal = true,
+			filetypes = { "markdown", "md" },
+
+			-- Optional custom logic to enable rendering selectively
+			on_attach = function(bufnr)
+				local filepath = vim.api.nvim_buf_get_name(bufnr)
+				if not filepath:match("^/Users/cix9ine/Notes/") then
+					require("render-markdown").enable(bufnr)
+				end
+			end,
+		})
+	end,
 }

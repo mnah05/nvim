@@ -4,6 +4,7 @@ vim.o.mouse = ""
 
 local opt = vim.opt
 
+opt.conceallevel = 2
 opt.number = true
 opt.relativenumber = true
 
