@@ -1,26 +1,23 @@
 return {
-	'saghen/blink.cmp',
+  'saghen/blink.cmp',
+  dependencies = { 'rafamadriz/friendly-snippets' },
+  version = '1.*',
 
-	dependencies = { 'rafamadriz/friendly-snippets' },
+  opts = {
+    keymap = { preset = 'default' },  -- Use a valid preset like 'default'
 
-	version = '1.*',
+    appearance = {
+      nerd_font_variant = 'mono',
+    },
 
-	opts = {
-		keymap = { preset = 'enter' },
+    completion = {
+      documentation = { auto_show = false },
+    },
 
-		appearance = {
-			nerd_font_variant = 'mono'
-		},
+    fuzzy = {
+      implementation = 'prefer_rust_with_warning',
+    },
+  },
 
-		completion = {
-			documentation = { auto_show = false },
-		},
-
-		fuzzy = {
-			implementation = "prefer_rust_with_warning"
-		}
-	},
-
-	
-	opts_extend = { "sources.default" }
+  opts_extend = { 'sources.default' },
 }
