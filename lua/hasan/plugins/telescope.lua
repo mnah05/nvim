@@ -46,7 +46,7 @@ return {
 				sorting_strategy = "ascending",
 			},
 			pickers = {
-				find_files = { hidden = true },
+				find_files = { hidden = false },
 			},
 			extensions = {
 				fzf = {
