@@ -8,7 +8,7 @@ keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
 -- Save and quit
 keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save the file" })
-keymap.set("n", "<leader>wq", ":wq<CR>", { desc = "Save and quit the file" })
+keymap.set("n", "<leader>x", ":wq<CR>", { desc = "Save and quit the file" })
 keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit Neovim" })
 keymap.set({ "i", "v" }, "qq", "<Esc>", { noremap = true, silent = true })
 -- use to open Explore [for now]
