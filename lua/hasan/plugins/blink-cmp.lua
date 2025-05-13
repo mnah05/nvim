@@ -19,5 +19,10 @@ return {
     },
   },
 
-  opts_extend = { 'sources.default' },
+  opts_extend = {
+	  sources = {
+		  {name = 'nvim-lsp'},
+		  {name = 'luasnip'},
+	  }
+  },
 }
