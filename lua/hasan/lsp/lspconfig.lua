@@ -37,6 +37,7 @@ return {
 				gopls = {},
 				clangd = {},
 				ts_ls = {},
+				jdtls = {},
 			}
 			for server, config in pairs(servers) do
 				config.capabilities = capabilities
