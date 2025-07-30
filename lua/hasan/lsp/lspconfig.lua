@@ -30,14 +30,19 @@ return {
 					vim.tbl_extend("force", { desc = "Code Action" }, bufopts))
 				vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,
 					vim.tbl_extend("force", { desc = "Smart Rename" }, bufopts))
+				vim.keymap.set("n", "<leader>gf", function()
+					vim.lsp.buf.format({ async = true })
+				end, vim.tbl_extend("force", { desc = "Format File" }, bufopts))
 			end
+
 			local servers = {
 				lua_ls = {},
 				pyright = {},
 				gopls = {},
 				clangd = {},
 				ts_ls = {},
-				jdtls = {},
+				html = {},
+				cssls = {},
 			}
 			for server, config in pairs(servers) do
 				config.capabilities = capabilities
