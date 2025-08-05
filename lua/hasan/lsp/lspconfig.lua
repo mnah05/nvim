@@ -1,17 +1,5 @@
 return {
 	{
-		"mason-org/mason.nvim",
-		config = function()
-			require("mason").setup()
-		end,
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		opts = {
-			auto_install = true,
-		},
-	},
-	{
 		"neovim/nvim-lspconfig",
 		dependencies = { "saghen/blink.cmp" },
 		config = function()
@@ -36,14 +24,13 @@ return {
 			end
 
 			local servers = {
-				lua_ls = {},
 				pyright = {},
 				gopls = {},
-				clangd = {},
 				ts_ls = {},
-				html = {},
-				cssls = {},
+				lua_ls = {},
+				clangd = {},
 			}
+
 			for server, config in pairs(servers) do
 				config.capabilities = capabilities
 				config.on_attach = on_attach
