@@ -12,7 +12,7 @@ keymap.set("n", "<leader>wq", ":x<CR>", { desc = "Save and quit the file" })
 keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit Neovim" })
 keymap.set({ "i", "v" }, "qq", "<Esc>", { noremap = true, silent = true })
 -- use to open Explore [for now]
-keymap.set("n", "<leader>ex", ":Ex<CR>", { noremap = true, silent = true })
+-- keymap.set("n", "<leader>ex", ":Ex<CR>", { noremap = true, silent = true })
 
 -- Window navigation
 keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move focus to the left window" })
