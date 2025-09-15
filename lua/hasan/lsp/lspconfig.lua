@@ -1,7 +1,11 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "saghen/blink.cmp" },
+    dependencies = {
+      "saghen/blink.cmp",
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+    },
     config = function()
       local lspconfig = require("lspconfig")
 
@@ -12,47 +16,31 @@ return {
 
       local on_attach = function(client, bufnr)
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", { desc = "Hover" }, bufopts))
-        vim.keymap.set(
-          "n",
-          "<leader>gd",
-          vim.lsp.buf.definition,
-          vim.tbl_extend("force", { desc = "Go to Definition" }, bufopts)
-        )
-        vim.keymap.set(
-          "n",
-          "<leader>gr",
-          vim.lsp.buf.references,
-          vim.tbl_extend("force", { desc = "References" }, bufopts)
-        )
-        vim.keymap.set(
-          "n",
-          "<leader>ca",
-          vim.lsp.buf.code_action,
-          vim.tbl_extend("force", { desc = "Code Action" }, bufopts)
-        )
-        vim.keymap.set(
-          "n",
-          "<leader>rn",
-          vim.lsp.buf.rename,
-          vim.tbl_extend("force", { desc = "Smart Rename" }, bufopts)
-        )
+        vim.keymap.set("n", "K", vim.lsp.buf.hover,
+          vim.tbl_extend("force", { desc = "Hover" }, bufopts))
+        vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition,
+          vim.tbl_extend("force", { desc = "Go to Definition" }, bufopts))
+        vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references,
+          vim.tbl_extend("force", { desc = "References" }, bufopts))
+        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action,
+          vim.tbl_extend("force", { desc = "Code Action" }, bufopts))
+        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,
+          vim.tbl_extend("force", { desc = "Smart Rename" }, bufopts))
         vim.keymap.set("n", "<leader>gf", function()
           vim.lsp.buf.format({ async = true })
         end, vim.tbl_extend("force", { desc = "Format File" }, bufopts))
       end
 
-      -- List of servers to setup with defaults
+      -- match the mason-lspconfig ensure_installed list
       local servers = {
-        "ts_ls",        -- TypeScript/JavaScript
-        "pyright",      -- Python
-        "lua_ls",       -- Lua
-        "clangd",       -- C/C++
-        "gopls",        -- Go
-        "rust_analyzer" -- Rust
+        "ts_ls",
+        "pyright",
+        "lua_ls",
+        "clangd",
+        "gopls",
+        "rust_analyzer",
       }
 
-      -- Setup all servers with default config
       for _, server in ipairs(servers) do
         lspconfig[server].setup({
           capabilities = capabilities,
