@@ -5,15 +5,14 @@ return {
     local mark = require("harpoon.mark")
     local ui = require("harpoon.ui")
 
-    -- Keybindings
-    vim.keymap.set("n", "<leader>mf", mark.add_file)
-    vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
+    -- mark current file, toggle quick menu
+    vim.keymap.set("n", "<leader>mf", mark.add_file, { desc = "Harpoon: mark file" })
+    vim.keymap.set("n", "<leader>e", ui.toggle_quick_menu, { desc = "Harpoon: toggle menu" })
 
-    -- Navigate between files
-    vim.keymap.set("n", "<C-1>", function() ui.nav_file(1) end)
-    vim.keymap.set("n", "<C-2>", function() ui.nav_file(2) end)
-    vim.keymap.set("n", "<C-3>", function() ui.nav_file(3) end)
-    vim.keymap.set("n", "<C-4>", function() ui.nav_file(4) end)
-    vim.keymap.set("n", "<C-5>", function() ui.nav_file(5) end)
+    -- leader + numbers 1..5 -> go to harpoon file n
+    for i = 1, 5 do
+      vim.keymap.set("n", "<leader>" .. i, function() ui.nav_file(i) end,
+        { desc = "Harpoon: go to file " .. i })
+    end
   end
 }
