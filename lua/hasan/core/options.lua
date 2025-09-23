@@ -7,7 +7,7 @@ local opt = vim.opt
 opt.number = true
 opt.relativenumber = true
 
-opt.guicursor = "n-v-c:block-Cursor"
+-- opt.guicursor = "n-v-c:block-Cursor"
 opt.tabstop = 4
 opt.shiftwidth = 4
 opt.autoindent = true

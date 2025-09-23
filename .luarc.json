@@ -2,5 +2,8 @@
     "diagnostics.globals": [
         "vim",
         "retunr"
+    ],
+    "diagnostics.disable": [
+        "undefined-doc-name"
     ]
 }
