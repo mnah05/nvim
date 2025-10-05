@@ -7,8 +7,7 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 		},
 		config = function()
-			local capabilities = require("blink.cmp")
-				.get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
+			local capabilities = require("blink.cmp").get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 			local on_attach = function(_, bufnr)
 				local map = function(keys, func, desc)
@@ -19,7 +18,9 @@ return {
 				map("<leader>gr", vim.lsp.buf.references, "References")
 				map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
 				map("<leader>rn", vim.lsp.buf.rename, "Rename")
-				map("<leader>gf", function() vim.lsp.buf.format({ async = true }) end, "Format File")
+				map("<leader>gf", function()
+					vim.lsp.buf.format({ async = true })
+				end, "Format File")
 			end
 
 			local servers = { "ts_ls", "pyright", "lua_ls", "clangd", "gopls", "rust_analyzer" }
