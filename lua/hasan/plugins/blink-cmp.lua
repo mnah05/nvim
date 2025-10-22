@@ -1,28 +1,28 @@
 return {
 	{
-		'L3MON4D3/LuaSnip',
-		build = 'make', -- optional, improves performance
-		dependencies = { 'rafamadriz/friendly-snippets' },
+		"L3MON4D3/LuaSnip",
+		build = "make", -- optional, improves performance
+		dependencies = { "rafamadriz/friendly-snippets" },
 		config = function()
-			require('luasnip.loaders.from_vscode').lazy_load()
+			require("luasnip.loaders.from_vscode").lazy_load()
 		end,
 	},
 
 	{
-		'saghen/blink.cmp',
+		"saghen/blink.cmp",
 		dependencies = {
-			'rafamadriz/friendly-snippets',
-			'L3MON4D3/LuaSnip',
+			"rafamadriz/friendly-snippets",
+			"L3MON4D3/LuaSnip",
 		},
-		version = '1.*',
+		version = "1.*",
 
 		opts = {
 			keymap = {
-				preset = 'default',
+				preset = "default",
 			},
 
 			appearance = {
-				nerd_font_variant = 'mono',
+				nerd_font_variant = "mono",
 			},
 
 			completion = {
@@ -30,17 +30,17 @@ return {
 			},
 
 			fuzzy = {
-				implementation = 'prefer_rust_with_warning',
+				implementation = "prefer_rust_with_warning",
 			},
 		},
 
 		opts_extend = {
 			sources = {
-				{ name = 'nvim-lsp' },
-				{ name = 'luasnip' },
-				{ name = 'buffer' },
-				{ name = 'path' },
+				{ name = "nvim-lsp" },
+				{ name = "luasnip" },
+				{ name = "buffer" },
+				{ name = "path" },
 			},
 		},
-	}
+	},
 }

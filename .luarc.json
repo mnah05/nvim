@@ -1,9 +1,4 @@
 {
-    "diagnostics.globals": [
-        "vim",
-        "retunr"
-    ],
-    "diagnostics.disable": [
-        "undefined-doc-name"
-    ]
+  "diagnostics.globals": ["vim", "retunr"],
+  "diagnostics.disable": ["undefined-doc-name"]
 }

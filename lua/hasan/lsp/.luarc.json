@@ -1,10 +1,4 @@
 {
-    "diagnostics.disable": [
-        "missing-fields",
-        "unused-local"
-    ],
-    "diagnostics.globals": [
-        "vim",
-        "LLVM"
-    ]
+  "diagnostics.disable": ["missing-fields", "unused-local"],
+  "diagnostics.globals": ["vim", "LLVM"]
 }

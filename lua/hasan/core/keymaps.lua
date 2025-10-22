@@ -26,10 +26,9 @@ vim.keymap.set("n", "<Down>", "<Nop>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Left>", "<Nop>", { noremap = true, silent = true })
 vim.keymap.set("n", "<Right>", "<Nop>", { noremap = true, silent = true })
 
-
--- Toggle Neo-tree
-vim.keymap.set("n", "<leader>nn", ":Neotree toggle<CR>", { noremap = true, silent = true })
-
--- Reveal current file in Neo-tree
-vim.keymap.set("n", "<leader>n", ":Neotree reveal<CR>", { noremap = true, silent = true })
-
+-- -- Toggle Neo-tree
+-- vim.keymap.set("n", "<leader>nn", ":Neotree toggle<CR>", { noremap = true, silent = true })
+--
+-- -- Reveal current file in Neo-tree
+-- vim.keymap.set("n", "<leader>n", ":Neotree reveal<CR>", { noremap = true, silent = true })
+--
