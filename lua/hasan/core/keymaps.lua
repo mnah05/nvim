@@ -31,4 +31,5 @@ vim.keymap.set("n", "<Right>", "<Nop>", { noremap = true, silent = true })
 --
 -- -- Reveal current file in Neo-tree
 -- vim.keymap.set("n", "<leader>n", ":Neotree reveal<CR>", { noremap = true, silent = true })
---
+vim.keymap.set("n", "<leader>te", ":TwilightEnable<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>td", ":TwilightDisable<CR>", { noremap = true, silent = true })
