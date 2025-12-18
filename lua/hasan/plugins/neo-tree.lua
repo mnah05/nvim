@@ -9,7 +9,7 @@ return {
 	cmd = "Neotree",
 	keys = {
 		{ "<leader>fe", "<cmd>Neotree toggle<cr>", desc = "Explorer" },
-		{ "<leader>fo", "<cmd>Neotree focus<cr>", desc = "Focus Explorer" },
+		{ "<leader>fe", "<cmd>Neotree focus<cr>", desc = "Focus Explorer" },
 	},
 	opts = {
 		filesystem = {
