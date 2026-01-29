@@ -19,6 +19,14 @@ keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move focus to the left window" })
 keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move focus to the right window" })
 keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move focus to the lower window" })
 keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move focus to the upper window" })
+keymap.set("n", "<leader>ro", "grr", {
+	remap = true,
+	desc = "Rename symbol",
+})
+
+keymap.set("n", "<leader>rc", "<cmd>cclose<cr>", {
+	desc = "Close quickfix window",
+})
 
 -- Disable arrow keys
 vim.keymap.set("n", "<Up>", "<Nop>", { noremap = true, silent = true })
@@ -33,6 +41,3 @@ vim.keymap.set("n", "<Right>", "<Nop>", { noremap = true, silent = true })
 -- vim.keymap.set("n", "<leader>n", ":Neotree reveal<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>te", ":TwilightEnable<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>td", ":TwilightDisable<CR>", { noremap = true, silent = true })
-keymap.set("n", "<leader><leader>op", function()
-	vim.cmd("edit ~/Documents/notebook/tasks.txt")
-end, { desc = "Open tasks list" })
