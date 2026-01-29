@@ -15,11 +15,16 @@ return {
 
 		telescope.setup({
 			defaults = {
-				prompt_prefix = "   ",
-				selection_caret = " ",
+				-- 🔑 FIX: disable treesitter previews
+				preview = {
+					treesitter = false,
+				},
+
+				prompt_prefix = "   ",
+				selection_caret = " ",
 				entry_prefix = "  ",
 				path_display = { "smart" },
-				winblend = 10,
+				winblend = 15,
 				border = {},
 				borderchars = {
 					prompt = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
@@ -64,10 +69,19 @@ return {
 			},
 		})
 
-		-- Load extensions safely
 		pcall(telescope.load_extension, "fzf")
 		pcall(telescope.load_extension, "live_grep_args")
 		pcall(telescope.load_extension, "ui-select")
+
+		-- Transparency
+		vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "none" })
+		vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "none" })
+		vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "none" })
+		vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "none" })
+		vim.api.nvim_set_hl(0, "TelescopeResultsNormal", { bg = "none" })
+		vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { bg = "none" })
+		vim.api.nvim_set_hl(0, "TelescopePreviewNormal", { bg = "none" })
+		vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { bg = "none" })
 
 		-- Keymaps
 		local keymap = vim.keymap
