@@ -32,14 +32,9 @@ return {
 			fuzzy = {
 				implementation = "prefer_rust_with_warning",
 			},
-		},
 
-		opts_extend = {
 			sources = {
-				{ name = "nvim-lsp" },
-				{ name = "luasnip" },
-				{ name = "buffer" },
-				{ name = "path" },
+				default = { "lsp", "snippets", "buffer", "path" },
 			},
 		},
 	},

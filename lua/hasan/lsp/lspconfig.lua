@@ -18,9 +18,7 @@ return {
 				map("<leader>gr", vim.lsp.buf.references, "References")
 				map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
 				map("<leader>rn", vim.lsp.buf.rename, "Rename")
-				map("<leader>gf", function()
-					vim.lsp.buf.format({ async = true })
-				end, "Format File")
+				-- Format is handled by conform.nvim (<leader>gf) for better formatter support
 			end
 
 			local servers = { "ts_ls", "pyright", "lua_ls", "clangd", "gopls", "rust_analyzer" }
