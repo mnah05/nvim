@@ -15,7 +15,6 @@ return {
 
 		telescope.setup({
 			defaults = {
-				-- 🔑 FIX: disable treesitter previews
 				preview = {
 					treesitter = false,
 				},
@@ -85,7 +84,10 @@ return {
 
 		-- Keymaps
 		local keymap = vim.keymap
-		keymap.set("n", "<leader>sf", "<cmd>Telescope find_files<CR>", { desc = "Fuzzy find files in cwd" })
-		keymap.set("n", "<leader>ss", "<cmd>Telescope live_grep<CR>", { desc = "Live grep in cwd" })
+		keymap.set("n", "<leader>sf", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
+		keymap.set("n", "<leader>ss", "<cmd>Telescope live_grep<cr>", { desc = "Live grep in cwd" })
+		keymap.set("n", "<leader>sa", function()
+			require("telescope").extensions.live_grep_args.live_grep_args()
+		end, { desc = "Live grep with args" })
 	end,
 }
