@@ -1,2 +1,3 @@
-require("hasan.core")
-require("hasan.lazy")
+require("core.options")
+require("core.keymaps")
+require("core.lazy")
