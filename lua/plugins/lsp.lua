@@ -1,27 +1,15 @@
 return {
-	-- Mason: LSP installer
 	{
 		"williamboman/mason.nvim",
 		opts = {},
 	},
-
-	-- Mason-lspconfig bridge
 	{
 		"williamboman/mason-lspconfig.nvim",
-		dependencies = { "williamboman/mason.nvim" },
+		dependencies = "williamboman/mason.nvim",
 		opts = {
-			ensure_installed = {
-				"ts_ls", -- JS/TS
-				"pyright", -- Python
-				"lua_ls", -- Lua
-				"clangd", -- C/C++
-				"gopls", -- Go
-			},
-			automatic_installation = true,
+			ensure_installed = { "lua_ls", "ts_ls", "pyright", "clangd", "gopls" },
 		},
 	},
-
-	-- LSP Config
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -29,11 +17,15 @@ return {
 			"saghen/blink.cmp",
 		},
 		config = function()
-			local capabilities = require("blink.cmp").get_lsp_capabilities()
+			local caps = require("blink.cmp").get_lsp_capabilities()
+			local servers = { "lua_ls", "ts_ls", "pyright", "clangd", "gopls" }
 
-			local servers = { "ts_ls", "pyright", "lua_ls", "clangd", "gopls" }
-			for _, server in ipairs(servers) do
-				vim.lsp.config(server, { capabilities = capabilities })
+			for _, srv in ipairs(servers) do
+				local opts = { capabilities = caps }
+				if srv == "lua_ls" then
+					opts.settings = { Lua = { diagnostics = { globals = { "vim" } } } }
+				end
+				vim.lsp.config(srv, opts)
 			end
 			vim.lsp.enable(servers)
 
@@ -41,7 +33,6 @@ return {
 				virtual_text = true,
 				signs = true,
 				underline = true,
-				update_in_insert = false,
 			})
 		end,
 	},

@@ -1,27 +1,32 @@
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.mouse = ""
+local opt = vim.opt
 
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.autoindent = true
-vim.opt.smartindent = true
-
-vim.opt.wrap = false
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.cursorline = true
-vim.opt.termguicolors = true
-vim.opt.background = "dark"
-vim.opt.clipboard:append("unnamedplus")
-
-vim.opt.updatetime = 250
-vim.opt.signcolumn = "yes"
+opt.number = true
+opt.relativenumber = true
+opt.mouse = "a"
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 2
+opt.expandtab = true
+opt.smartindent = true
+opt.wrap = false
+opt.ignorecase = true
+opt.smartcase = true
+opt.cursorline = true
+opt.termguicolors = true
+opt.background = "dark"
+opt.clipboard = "unnamedplus"
+opt.undofile = true
+opt.updatetime = 250
+opt.signcolumn = "yes"
+opt.scrolloff = 8
+opt.splitbelow = true
+opt.splitright = true
+opt.pumheight = 10
+opt.completeopt = "menu,menuone,noselect"
+opt.swapfile = false
 
 vim.g.mapleader = " "
 
--- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
 		vim.highlight.on_yank()
