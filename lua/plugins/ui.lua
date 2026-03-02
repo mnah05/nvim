@@ -1,70 +1,63 @@
 return {
-	-- Colorscheme: Catppuccin Mocha - warm, easy on eyes, great contrast
+	-- Lush-based colorscheme: zenbones (dark, minimal, easy on eyes)
 	{
-		"catppuccin/nvim",
-		name = "catppuccin",
+		"mcchrish/zenbones.nvim",
+		dependencies = "rktjmp/lush.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require("catppuccin").setup({
-				flavour = "mocha",
-				integrations = {
-					telescope = true,
-					gitsigns = true,
-					nvimtree = false,
-					mason = true,
-					which_key = true,
-					blink_cmp = true,
-				},
-			})
-			vim.cmd.colorscheme("catppuccin")
+			vim.g.zenbones_darken_comments = 45
+			vim.cmd.colorscheme("zenbones")
 		end,
 	},
 
-	-- Status line
+	-- Minimal statusline
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			require("lualine").setup({
-				options = { theme = "catppuccin", icons_enabled = true },
-			})
-		end,
+		dependencies = "nvim-tree/nvim-web-devicons",
+		opts = {
+			options = {
+				theme = "auto",
+				component_separators = "",
+				section_separators = "",
+				globalstatus = true,
+			},
+			sections = {
+				lualine_a = { "mode" },
+				lualine_b = { "branch", "diff", "diagnostics" },
+				lualine_c = { { "filename", path = 1 } },
+				lualine_x = { "filetype" },
+				lualine_y = { "progress" },
+				lualine_z = { "location" },
+			},
+		},
 	},
 
 	-- File explorer
 	{
 		"stevearc/oil.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			require("oil").setup({ default_file_explorer = true })
-			vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open Oil" })
-		end,
+		dependencies = "nvim-tree/nvim-web-devicons",
+		opts = { default_file_explorer = true },
 	},
 
 	-- Fuzzy finder
 	{
 		"nvim-telescope/telescope.nvim",
-		branch = "master",
+		cmd = "Telescope",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		},
-		config = function()
-			local telescope = require("telescope")
-			telescope.setup({
-				defaults = {
-					prompt_prefix = " ",
-					selection_caret = "> ",
-					layout_config = { width = 0.9, height = 0.8 },
-				},
-			})
-			pcall(telescope.load_extension, "fzf")
-
-			local keymap = vim.keymap
-			keymap.set("n", "<leader>sf", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
-			keymap.set("n", "<leader>ss", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" })
-			keymap.set("n", "<leader>sb", "<cmd>Telescope buffers<cr>", { desc = "Buffers" })
+		opts = {
+			defaults = {
+				prompt_prefix = "> ",
+				selection_caret = "> ",
+				layout_config = { width = 0.8, height = 0.8 },
+			},
+		},
+		config = function(_, opts)
+			require("telescope").setup(opts)
+			pcall(require("telescope").load_extension, "fzf")
 		end,
 	},
 }

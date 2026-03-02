@@ -1,15 +1,16 @@
--- Treesitter: syntax highlighting
 return {
+	-- Treesitter: syntax highlighting
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		opts = {
-			ensure_installed = { "lua", "python", "go", "javascript", "typescript", "c", "cpp" },
-			highlight = { enable = true },
-			auto_install = true,
-		},
-		config = function(_, opts)
-			require("nvim-treesitter").setup(opts)
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
+			require("nvim-treesitter").setup({
+				highlight = { enable = true },
+				indent = { enable = true },
+				ensure_installed = { "lua", "python", "go", "javascript", "typescript", "c", "cpp" },
+				auto_install = true,
+			})
 		end,
 	},
 
@@ -17,59 +18,39 @@ return {
 	{
 		"saghen/blink.cmp",
 		version = "1.*",
+		event = "InsertEnter",
 		opts = {
 			keymap = { preset = "default" },
 			appearance = { nerd_font_variant = "mono" },
-			sources = { default = { "lsp", "buffer", "path" } },
+			sources = { default = { "lsp", "path", "buffer" } },
+			signature = { enabled = true },
 		},
 	},
 
-	-- Auto-pairs
-	{
-		"echasnovski/mini.pairs",
-		event = "InsertEnter",
-		config = function()
-			require("mini.pairs").setup()
-		end,
-	},
-
-	-- Surround (ys, ds, cs)
-	{
-		"echasnovski/mini.surround",
-		config = function()
-			require("mini.surround").setup()
-		end,
-	},
-
-	-- Comments (gc)
-	{
-		"echasnovski/mini.comment",
-		config = function()
-			require("mini.comment").setup()
-		end,
-	},
+	{ "echasnovski/mini.pairs", event = "InsertEnter", opts = {} },
+	{ "echasnovski/mini.surround", opts = {} },
+	{ "echasnovski/mini.comment", opts = {} },
 
 	-- Formatting
 	{
 		"stevearc/conform.nvim",
-		event = { "BufWritePre" },
-		cmd = { "ConformInfo" },
+		event = "BufWritePre",
+		cmd = "ConformInfo",
 		keys = {
 			{
-				"<leader>ff",
+				"<leader>cf",
 				function()
-					require("conform").format({ lsp_fallback = true })
+					require("conform").format()
 				end,
-				mode = { "n", "v" },
-				desc = "Format file",
+				desc = "Format",
 			},
 		},
 		opts = {
 			formatters_by_ft = {
-				javascript = { "prettier" },
-				typescript = { "prettier" },
 				lua = { "stylua" },
 				python = { "black" },
+				javascript = { "prettier" },
+				typescript = { "prettier" },
 				c = { "clang-format" },
 				cpp = { "clang-format" },
 				go = { "gofumpt" },
@@ -81,15 +62,13 @@ return {
 	-- Git signs
 	{
 		"lewis6991/gitsigns.nvim",
-		event = { "BufReadPre" },
-		config = function()
-			require("gitsigns").setup({
-				signs = {
-					add = { text = "+" },
-					change = { text = "~" },
-					delete = { text = "_" },
-				},
-			})
-		end,
+		event = "BufReadPost",
+		opts = {
+			signs = {
+				add = { text = "│" },
+				change = { text = "│" },
+				delete = { text = "_" },
+			},
+		},
 	},
 }
