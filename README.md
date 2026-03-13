@@ -4,7 +4,7 @@ A modern, minimal Neovim configuration built with [lazy.nvim](https://github.com
 
 ## Features
 
-- **Colorscheme**: [zenbones](https://github.com/mcchrish/zenbones.nvim) — dark, minimal, easy on the eyes
+- **Colorscheme**: [vscode.nvim](https://github.com/Mofiqul/vscode.nvim) — VS Code / Cursor-style dark theme
 - **File Explorer**: [oil.nvim](https://github.com/stevearc/oil.nvim) — edit filesystem like a buffer
 - **Fuzzy Finder**: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) with fzf-native
 - **LSP**: Native Neovim LSP with [mason](https://github.com/williamboman/mason.nvim) for easy server management
@@ -13,6 +13,7 @@ A modern, minimal Neovim configuration built with [lazy.nvim](https://github.com
 - **Syntax**: [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) with auto-install
 - **Git**: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) for diff signs in gutter
 - **Editing**: mini.pairs, mini.surround, mini.comment for enhanced editing
+- **Utilities**: which-key for keybinding hints, indent-blankline for indent guides, todo-comments for highlighting TODO/FIXME/NOTE
 
 ## Requirements
 
