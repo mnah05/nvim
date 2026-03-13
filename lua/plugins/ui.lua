@@ -1,17 +1,14 @@
 return {
-	-- Colorscheme: VS Code / Cursor-style dark theme
+	-- Colorscheme: Everforest — soothing green-tinted dark theme
 	{
-		"Mofiqul/vscode.nvim",
+		"rebelot/kanagawa.nvim",
 		lazy = false,
 		priority = 1000,
-		opts = {
-			style = "dark",
-			transparent = false,
-			italic_comments = true,
-		},
-		config = function(_, opts)
-			require("vscode").setup(opts)
-			vim.cmd.colorscheme("vscode")
+		config = function()
+			vim.g.everforest_background = "medium"
+			vim.g.everforest_better_performance = 1
+			vim.g.everforest_enable_italic = 1
+			vim.cmd.colorscheme("kanagawa")
 		end,
 	},
 
