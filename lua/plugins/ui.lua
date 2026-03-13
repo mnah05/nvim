@@ -1,13 +1,17 @@
 return {
-	-- Lush-based colorscheme: zenbones (dark, minimal, easy on eyes)
+	-- Colorscheme: VS Code / Cursor-style dark theme
 	{
-		"mcchrish/zenbones.nvim",
-		dependencies = "rktjmp/lush.nvim",
+		"Mofiqul/vscode.nvim",
 		lazy = false,
 		priority = 1000,
-		config = function()
-			vim.g.zenbones_darken_comments = 45
-			vim.cmd.colorscheme("zenbones")
+		opts = {
+			style = "dark",
+			transparent = false,
+			italic_comments = true,
+		},
+		config = function(_, opts)
+			require("vscode").setup(opts)
+			vim.cmd.colorscheme("vscode")
 		end,
 	},
 
@@ -59,5 +63,31 @@ return {
 			require("telescope").setup(opts)
 			pcall(require("telescope").load_extension, "fzf")
 		end,
+	},
+
+	-- Which-key: shows pending keybindings in a popup
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		opts = {},
+	},
+
+	-- Indent guides
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		event = { "BufReadPost", "BufNewFile" },
+		opts = {
+			indent = { char = "│" },
+			scope = { enabled = true },
+		},
+	},
+
+	-- Highlight TODO/FIXME/NOTE comments
+	{
+		"folke/todo-comments.nvim",
+		event = { "BufReadPost", "BufNewFile" },
+		dependencies = "nvim-lua/plenary.nvim",
+		opts = {},
 	},
 }
