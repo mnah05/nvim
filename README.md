@@ -4,7 +4,6 @@ A modern, minimal Neovim configuration built with [lazy.nvim](https://github.com
 
 ## Features
 
-- **Colorscheme**: [vscode.nvim](https://github.com/Mofiqul/vscode.nvim) — VS Code / Cursor-style dark theme
 - **File Explorer**: [oil.nvim](https://github.com/stevearc/oil.nvim) — edit filesystem like a buffer
 - **Fuzzy Finder**: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) with fzf-native
 - **LSP**: Native Neovim LSP with [mason](https://github.com/williamboman/mason.nvim) for easy server management
