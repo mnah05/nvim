@@ -1,6 +1,6 @@
 local map = vim.keymap.set
 
-map({ "i", "v" }, "jj", "<Esc>")
+map({ "i", "v" }, "jk", "<Esc>")
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
 map("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "<C-h>", "<C-w>h")
