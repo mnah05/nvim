@@ -18,8 +18,8 @@ map("n", "gr", vim.lsp.buf.references, { desc = "References" })
 map("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
-map("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
+map("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, { desc = "Next Diagnostic" })
+map("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, { desc = "Prev Diagnostic" })
 
 -- Telescope
 map("n", "<leader>f", "<cmd>Telescope find_files<cr>", { desc = "Find files" })

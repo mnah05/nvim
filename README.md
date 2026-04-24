@@ -16,7 +16,7 @@ A modern, minimal Neovim configuration built with [lazy.nvim](https://github.com
 
 ## Requirements
 
-- Neovim >= 0.10
+- Neovim >= 0.11
 - Git
 - A [Nerd Font](https://www.nerdfonts.com/) (for icons)
 - Optional: `ripgrep` (for telescope live_grep)
@@ -57,7 +57,7 @@ Install formatters via Mason or your system package manager:
 
 | Key | Action |
 |-----|--------|
-| `jj` | Exit insert/visual mode |
+| `jk` | Exit insert/visual mode |
 | `<leader>w` | Save file |
 | `<leader>q` | Quit |
 | `<Tab>` / `<S-Tab>` | Next/previous buffer |
