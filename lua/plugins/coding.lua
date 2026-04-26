@@ -1,31 +1,16 @@
 return {
-	-- Treesitter: syntax highlighting
-	{
+{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },
 		config = function()
-			require("nvim-treesitter").setup({
-				highlight = { enable = true },
-				indent = { enable = true },
-				ensure_installed = {
-					"lua",
-					"vim",
-					"vimdoc",
-					"query",
-					"python",
-					"go",
-					"javascript",
-					"typescript",
-					"c",
-					"cpp",
-					"json",
-					"yaml",
-					"bash",
-					"markdown",
-					"markdown_inline",
-				},
-				auto_install = true,
+			require("nvim-treesitter").setup({})
+			vim.api.nvim_create_autocmd("FileType", {
+				callback = function(args)
+					if pcall(vim.treesitter.start, args.buf) then
+						vim.bo[args.buf].indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
+					end
+				end,
 			})
 		end,
 	},
