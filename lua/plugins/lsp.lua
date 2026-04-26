@@ -8,6 +8,7 @@ return {
 		dependencies = "williamboman/mason.nvim",
 		opts = {
 			ensure_installed = { "lua_ls", "ts_ls", "pyright", "clangd", "gopls" },
+			automatic_enable = false,
 		},
 	},
 	{
