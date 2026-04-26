@@ -9,14 +9,14 @@ A modern, minimal Neovim configuration built with [lazy.nvim](https://github.com
 - **LSP**: Native Neovim LSP with [mason](https://github.com/williamboman/mason.nvim) for easy server management
 - **Completion**: [blink.cmp](https://github.com/Saghen/blink.cmp) — fast, minimal completion
 - **Formatting**: [conform.nvim](https://github.com/stevearc/conform.nvim) with format-on-save
-- **Syntax**: [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) with auto-install
+- **Syntax**: [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) highlighting and indentation
 - **Git**: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) for diff signs in gutter
 - **Editing**: mini.pairs, mini.surround, mini.comment for enhanced editing
 - **Utilities**: which-key for keybinding hints, indent-blankline for indent guides, todo-comments for highlighting TODO/FIXME/NOTE
 
 ## Requirements
 
-- Neovim >= 0.11
+- Neovim >= 0.12
 - Git
 - A [Nerd Font](https://www.nerdfonts.com/) (for icons)
 - Optional: `ripgrep` (for telescope live_grep)
