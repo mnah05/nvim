@@ -10,7 +10,6 @@ map("n", "<C-k>", "<C-w>k")
 map("n", "<Tab>", "<cmd>bnext<cr>")
 map("n", "<S-Tab>", "<cmd>bprev<cr>")
 map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Close buffer" })
-map("n", "-", "<cmd>Oil<cr>", { desc = "File explorer" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)

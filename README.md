@@ -1,120 +1,150 @@
 # Neovim Config
 
-A modern, minimal Neovim configuration built with [lazy.nvim](https://github.com/folke/lazy.nvim).
+A minimal, production-ready Neovim configuration built with [lazy.nvim](https://github.com/folke/lazy.nvim)
+
+## Target Languages
+
+| Language | LSP Server | Formatter | Treesitter Parser |
+|----------|-----------|-----------|-------------------|
+| TypeScript / TSX | `ts_ls` | `prettier` | `typescript`, `tsx`, `javascript` |
+| Python | `pyright` | `black` | `python` |
+| C / C++ | `clangd` | `clang-format` | `c`, `cpp` |
+| Go | `gopls` | `gofumpt` | `go` |
+| SQL | `sqlls` | `sqlfmt` | `sql` |
+| Lua | — | `stylua` | `lua` |
+
+Only enabled LSP servers whose binary is on `PATH` (installed via Mason or system) are started —
+no error spam for missing servers.
+
+Install servers and formatters with Mason:
+
+```
+:MasonInstall ts_ls pyright clangd gopls sqlls
+:MasonInstall prettier black clang-format gofumpt sqlfmt stylua
+```
 
 ## Features
 
-- **File Explorer**: [oil.nvim](https://github.com/stevearc/oil.nvim) — edit filesystem like a buffer
+- **File Explorer**: [oil.nvim](https://github.com/stevearc/oil.nvim) — edit the filesystem like a buffer
 - **Fuzzy Finder**: [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) with fzf-native
-- **LSP**: Native Neovim LSP with [mason](https://github.com/williamboman/mason.nvim) for easy server management
-- **Completion**: [blink.cmp](https://github.com/Saghen/blink.cmp) — fast, minimal completion
+- **LSP**: Native Neovim LSP with [mason.nvim](https://github.com/williamboman/mason.nvim)
+- **Completion**: [blink.cmp](https://github.com/Saghen/blink.cmp)
 - **Formatting**: [conform.nvim](https://github.com/stevearc/conform.nvim) with format-on-save
-- **Syntax**: [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) highlighting and indentation
-- **Git**: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) for diff signs in gutter
-- **Editing**: mini.pairs, mini.surround, mini.comment for enhanced editing
-- **Utilities**: which-key for keybinding hints, indent-blankline for indent guides, todo-comments for highlighting TODO/FIXME/NOTE
+- **Syntax**: [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) highlighting + indentation
+- **Git**: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+- **Editing**: mini.pairs / mini.surround / mini.comment
+- **Utilities**: which-key, indent-blankline, todo-comments, flash.nvim, render-markdown
 
 ## Requirements
 
 - Neovim >= 0.12
 - Git
 - A [Nerd Font](https://www.nerdfonts.com/) (for icons)
-- Optional: `ripgrep` (for telescope live_grep)
+- Optional: `ripgrep` (for Telescope live_grep)
 
 ## Installation
 
 ```bash
-# Backup your existing config
 mv ~/.config/nvim ~/.config/nvim.backup
-
-# Clone this repo
 git clone https://github.com/YOUR_USERNAME/nvim-config.git ~/.config/nvim
-
-# Start Neovim (plugins will auto-install)
-nvim
+nvim   # plugins auto-install; LSP servers boot on first idle
 ```
-
-## LSP Servers & Formatters
-
-The following are auto-configured:
-
-| Language | LSP Server | Formatter |
-|----------|-----------|-----------|
-| Lua | `lua_ls` | `stylua` |
-| Python | `pyright` | `black` |
-| JavaScript/TypeScript | `ts_ls` | `prettier` |
-| C/C++ | `clangd` | `clang-format` |
-| Go | `gopls` | `gofumpt` |
-
-Install formatters via Mason or your system package manager:
-```vim
-:MasonInstall stylua black prettier clang-format gofumpt
-```
-
-## Keymaps
-
-### General
-
-| Key | Action |
-|-----|--------|
-| `jk` | Exit insert/visual mode |
-| `<leader>w` | Save file |
-| `<leader>q` | Quit |
-| `<Tab>` / `<S-Tab>` | Next/previous buffer |
-| `<leader>bd` | Close buffer |
-| `-` | Open file explorer (oil.nvim) |
-
-### Window Navigation
-
-| Key | Action |
-|-----|--------|
-| `<C-h/j/k/l>` | Move between windows |
-
-### LSP
-
-| Key | Action |
-|-----|--------|
-| `gd` | Go to definition |
-| `gr` | Show references |
-| `K` | Hover documentation |
-| `<leader>ca` | Code action |
-| `<leader>rn` | Rename symbol |
-| `]d` / `[d` | Next/previous diagnostic |
-| `<leader>cf` | Format buffer |
-
-### Telescope
-
-| Key | Action |
-|-----|--------|
-| `<leader>f` | Find files |
-| `<leader>s` | Live grep |
-| `<leader>b` | List buffers |
 
 ## Structure
 
 ```
 ~/.config/nvim/
-├── init.lua           -- Entry point
+├── init.lua
+├── lazy-lock.json        -- pinned plugin versions
 ├── lua/
 │   ├── core/
-│   │   ├── options.lua   -- Editor options
-│   │   ├── keymaps.lua   -- Key bindings
-│   │   └── lazy.lua      -- Plugin manager setup
+│   │   ├── options.lua    -- editor options
+│   │   ├── keymaps.lua    -- core keybindings
+│   │   └── lazy.lua       -- lazy.nvim bootstrap
 │   └── plugins/
-│       ├── ui.lua        -- Colorscheme, statusline, explorer, telescope
-│       ├── coding.lua    -- Treesitter, completion, formatting, git
-│       └── lsp.lua       -- LSP configuration
-└── lazy-lock.json     -- Plugin lockfile
+│       ├── lsp.lua        -- LSP, Mason, language servers
+│       ├── coding.lua     -- treesitter, completion, formatting, git
+│       └── ui.lua         -- colorscheme, statusline, explorer, telescope
 ```
 
-## Customization
+## Keybindings
 
-Edit files in `lua/` to customize:
+`<leader>` is <kbd>Space</kbd>.
 
-- `lua/core/options.lua` — Editor settings
-- `lua/core/keymaps.lua` — Key bindings
-- `lua/plugins/*.lua` — Plugin configurations
+### General
 
-## License
+| Key | Mode | Action |
+|-----|------|--------|
+| `jk` | insert / visual | Exit to normal mode |
+| `<leader>w` | normal | Save file |
+| `<leader>q` | normal | Quit current Neovim instance |
+| `<leader>bd` | normal | Close current buffer |
+| `<Tab>` | normal | Next buffer |
+| `<S-Tab>` | normal | Previous buffer |
 
-MIT
+### Window Navigation
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `<C-h>` | normal | Focus window left |
+| `<C-l>` | normal | Focus window right |
+| `<C-j>` | normal | Focus window below |
+| `<C-k>` | normal | Focus window above |
+
+### File Explorer (oil.nvim)
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `-` | normal | Open file explorer (outside current file) |
+
+Within an oil explorer buffer use `o` / `Enter` to open the directory/file you want.
+
+### Telescope
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `<leader>f` | normal | Find files |
+| `<leader>s` | normal | Live grep (requires `rg`) |
+| `<leader>b` | normal | List open buffers |
+
+### LSP *buffer-local, active when a language server attaches
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `gd` | normal | Go to definition |
+| `gr` | normal | Show references |
+| `K` | normal | Hover documentation |
+| `<leader>ca` | normal | Code action |
+| `<leader>rn` | normal | Incremental rename |
+| `<leader>lm` | normal | Mason — manage language servers |
+| `]d` | normal | Next diagnostic |
+| `[d` | normal | Previous diagnostic |
+
+### Formatting
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `<leader>cf` | normal | Format current buffer |
+
+Format-on-save is enabled (`{ timeout_ms = 500, lsp_fallback = true }`).
+
+### Diagnostics
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `]d` | normal | Jump to next diagnostic |
+| `[d` | normal | Jump to previous diagnostic |
+
+### Flash (motion)
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `s` | normal / visual / operator | Flash jump |
+| `S` | normal / visual / operator | Flash to Treesitter node |
+| `r` | operator | Remote flash |
+| `R` | operator / visual | Treesitter search |
+| `<C-s>` | command-line | Toggle flash search |
+
+### Comment (mini.comment)
+
+`mini.comment` provides `gcc` to (un)comment a line, `gc` motions, and operator-pending `gc`.

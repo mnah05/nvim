@@ -1,2 +1,6 @@
+# Committed to keep plugin versions pinned (see lazy.nvim docs)
+# lazy-lock.json
 
-lazy-lock.json
+# Editor/OS noise
+.DS_Store
+*.swp

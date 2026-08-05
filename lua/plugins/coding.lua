@@ -1,10 +1,30 @@
 return {
-{
+	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },
 		config = function()
-			require("nvim-treesitter").setup({})
+			require("nvim-treesitter").setup({
+				ensure_installed = {
+					"lua",
+					"vim",
+					"vimdoc",
+					"typescript",
+					"tsx",
+					"javascript",
+					"python",
+					"c",
+					"cpp",
+					"go",
+					"sql",
+					"markdown",
+					"markdown_inline",
+					"json",
+					"yaml",
+					"bash",
+					"comment",
+				},
+			})
 			vim.api.nvim_create_autocmd("FileType", {
 				callback = function(args)
 					if pcall(vim.treesitter.start, args.buf) then
@@ -43,18 +63,24 @@ return {
 				function()
 					require("conform").format()
 				end,
-				desc = "Format",
+				desc = "Format buffer",
 			},
 		},
 		opts = {
 			formatters_by_ft = {
-				lua = { "stylua" },
-				python = { "black" },
-				javascript = { "prettier" },
 				typescript = { "prettier" },
+				typescriptreact = { "prettier" },
+				javascript = { "prettier" },
+				javascriptreact = { "prettier" },
+				json = { "prettier" },
+				html = { "prettier" },
+				css = { "prettier" },
+				python = { "black" },
 				c = { "clang-format" },
 				cpp = { "clang-format" },
 				go = { "gofumpt" },
+				sql = { "sqlfmt" },
+				lua = { "stylua" },
 			},
 			format_on_save = { timeout_ms = 500, lsp_fallback = true },
 		},
