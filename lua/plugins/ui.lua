@@ -1,11 +1,20 @@
 return {
-	-- Colorscheme: Kanagawa — soothing dark theme
+	-- Colorscheme: Rosé Pine — elegant warm dark theme
 	{
-		"rebelot/kanagawa.nvim",
+		"rose-pine/neovim",
+		name = "rose-pine",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("kanagawa")
+			require("rose-pine").setup({
+				variant = "auto",
+				styles = {
+					bold = true,
+					italic = true,
+					transparency = false,
+				},
+			})
+			vim.cmd.colorscheme("rose-pine")
 		end,
 	},
 
