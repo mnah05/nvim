@@ -39,8 +39,6 @@ return {
 			},
 		},
 	},
-
-	-- File explorer
 	{
 		"stevearc/oil.nvim",
 		dependencies = "nvim-tree/nvim-web-devicons",
@@ -48,10 +46,13 @@ return {
 		keys = {
 			{ "-", "<cmd>Oil<cr>", desc = "File explorer" },
 		},
-		opts = { default_file_explorer = true },
+		opts = {
+			default_file_explorer = true,
+			view_options = {
+				show_hidden = true,
+			},
+		},
 	},
-
-	-- Fuzzy finder
 	{
 		"nvim-telescope/telescope.nvim",
 		cmd = "Telescope",
