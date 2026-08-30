@@ -58,7 +58,6 @@ return {
 		cmd = "Telescope",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		},
 		opts = {
 			defaults = {
@@ -69,7 +68,6 @@ return {
 		},
 		config = function(_, opts)
 			require("telescope").setup(opts)
-			pcall(require("telescope").load_extension, "fzf")
 		end,
 	},
 

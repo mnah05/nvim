@@ -16,6 +16,7 @@ return {
 					"c",
 					"cpp",
 					"go",
+					"rust",
 					"sql",
 					"markdown",
 					"markdown_inline",
@@ -55,7 +56,7 @@ return {
 	-- Formatting
 	{
 		"stevearc/conform.nvim",
-		event = "BufWritePre",
+		event = { "BufReadPre", "BufNewFile" },
 		cmd = "ConformInfo",
 		keys = {
 			{
@@ -79,10 +80,13 @@ return {
 				c = { "clang-format" },
 				cpp = { "clang-format" },
 				go = { "gofumpt" },
+				rust = { "rustfmt" },
 				sql = { "sqlfmt" },
 				lua = { "stylua" },
 			},
-			format_on_save = { timeout_ms = 500, lsp_fallback = true },
+			default_format_opts = { lsp_format = "never" },
+			format_on_save = { timeout_ms = 1000, lsp_format = "never" },
+			notify_on_error = true,
 		},
 	},
 

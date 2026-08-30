@@ -6,7 +6,34 @@ return {
 		lazy = false,
 		opts = {
 			bigfile = { enabled = true },
-			dashboard = { enabled = true },
+			dashboard = {
+				enabled = true,
+				width = 48,
+				preset = {
+					header = [[
+                 *
+                /\\
+               /\\/\\
+              /      \\
+             /  /\\    \\
+            /__/  \\____\\
+                ||||
+                ||||]],
+					keys = {
+						{ icon = " ", key = "f", desc = "Files", action = ":lua Snacks.dashboard.pick('files')" },
+						{ icon = " ", key = "g", desc = "Grep", action = ":lua Snacks.dashboard.pick('live_grep')" },
+						{ icon = " ", key = "r", desc = "Recent", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+						{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
+					},
+				},
+				sections = {
+					{ section = "header", padding = 1 },
+					{ section = "keys", gap = 1, padding = 1 },
+					{ section = "recent_files", title = "Recent", limit = 5, indent = 2, padding = 1 },
+				},
+			},
+			explorer = { enabled = true },
+			picker = { enabled = true },
 			input = { enabled = true },
 			lazygit = { enabled = true },
 			notifier = {
@@ -23,6 +50,13 @@ return {
 			},
 		},
 		keys = {
+			{
+				"<leader>fe",
+				function()
+					Snacks.explorer()
+				end,
+				desc = "File explorer",
+			},
 			{
 				"<leader>u",
 				function()
@@ -125,6 +159,21 @@ return {
 					default = { layout = "diff2_horizontal" },
 				},
 			})
+		end,
+	},
+
+	-- Database explorer and query runner. Configure connections through vim.g.dbs.
+	{
+		"kristijanhusak/vim-dadbod-ui",
+		cmd = { "DBUI", "DBUIToggle", "DBUIAddConnection" },
+		dependencies = { "tpope/vim-dadbod" },
+		keys = {
+			{ "<leader>du", "<cmd>DBUIToggle<cr>", desc = "Database UI" },
+		},
+		init = function()
+			vim.g.db_ui_use_nerd_fonts = 1
+			vim.g.db_ui_win_position = "left"
+			vim.g.db_ui_winwidth = 40
 		end,
 	},
 }

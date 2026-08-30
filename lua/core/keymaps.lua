@@ -15,14 +15,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local opts = { buffer = args.buf }
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+		vim.keymap.set("n", "<leader>ds", vim.lsp.buf.document_symbol, opts)
+		vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
 	end,
 })
 map("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, { desc = "Next Diagnostic" })
 map("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, { desc = "Prev Diagnostic" })
+map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic" })
+map("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Diagnostic list" })
 
 -- Telescope
 map("n", "<leader>f", "<cmd>Telescope find_files<cr>", { desc = "Find files" })

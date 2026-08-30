@@ -32,3 +32,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+
+-- Keep the global defaults predictable while honoring Go's tab-based style.
+local indentation_group = vim.api.nvim_create_augroup("LanguageIndentation", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	group = indentation_group,
+	pattern = "go",
+	callback = function()
+		vim.bo.expandtab = false
+		vim.bo.tabstop = 4
+		vim.bo.shiftwidth = 4
+		vim.bo.softtabstop = 4
+	end,
+})
