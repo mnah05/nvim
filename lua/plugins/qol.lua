@@ -2,7 +2,7 @@ return {
 	-- Snacks: a battery of QoL features (dashboard, notifier, smooth scroll, …)
 	{
 		"folke/snacks.nvim",
-		priority = 900,
+		priority = 1000,
 		lazy = false,
 		opts = {
 			bigfile = { enabled = true },
