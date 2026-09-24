@@ -22,7 +22,12 @@ return {
 					keys = {
 						{ icon = " ", key = "f", desc = "Files", action = ":lua Snacks.dashboard.pick('files')" },
 						{ icon = " ", key = "g", desc = "Grep", action = ":lua Snacks.dashboard.pick('live_grep')" },
-						{ icon = " ", key = "r", desc = "Recent", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+						{
+							icon = " ",
+							key = "r",
+							desc = "Recent",
+							action = ":lua Snacks.dashboard.pick('oldfiles')",
+						},
 						{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
 					},
 				},
@@ -33,7 +38,6 @@ return {
 				},
 			},
 			explorer = { enabled = true },
-			picker = { enabled = true },
 			input = { enabled = true },
 			lazygit = { enabled = true },
 			notifier = {

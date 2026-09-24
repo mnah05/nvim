@@ -12,6 +12,7 @@ The configuration deliberately does not install operating-system dependencies: l
 
 - Neovim 0.12+
 - Git
+- `tree-sitter` CLI and a C compiler for Treesitter parser installation
 - `fd` for Snacks Explorer
 - `ripgrep` for live grep
 - A Nerd Font is recommended for icons
@@ -77,6 +78,7 @@ On Windows, use `$env:LOCALAPPDATA\nvim` as the clone target from PowerShell. Th
 ## Features
 
 - LSP completion, hover, rename, definitions, implementations, symbols, code actions, and diagnostics.
+- Friendly snippets in Blink completion, plus personal VS Code-style snippets from `~/.config/nvim/snippets/`.
 - Format-on-save with an explicitly selected formatter per filetype.
 - Treesitter highlighting and indentation.
 - Project explorer, editable filesystem browser, file finder, and project grep.
@@ -119,11 +121,12 @@ These buffer-local mappings appear when an LSP attaches.
 | Key | Action |
 |---|---|
 | `gd` / `gD` | Definition / declaration |
-| `gi` / `gr` | Implementation / references |
-| `K` | Hover documentation |
-| `<leader>ca` / `<leader>rn` | Code action / rename symbol |
+| `gi` / `gr` / `gy` | Implementation / references / type definition |
+| `K` / `gK` / `<C-k>` | Hover / signature help / insert-mode signature help |
+| `<leader>ca` / `<leader>rn` / `<leader>cR` | Code action / rename symbol / rename file and update imports |
 | `<leader>ds` / `<leader>ws` | Document / workspace symbols |
-| `<leader>lm` | Mason UI |
+| `<leader>cl` / `<leader>lm` | LSP information / Mason UI |
+| `<leader>th` | Toggle inlay hints when supported by the LSP |
 | `]d` / `[d` | Next / previous diagnostic |
 | `<leader>e` | Diagnostic popup under cursor |
 | `<leader>dl` | Put diagnostics in location list |
@@ -136,6 +139,11 @@ These buffer-local mappings appear when an LSP attaches.
 | `<leader>gg` | Open Lazygit |
 | `<leader>gd` / `<leader>gD` | Open / close Diffview |
 | `<leader>gh` | File history in Diffview |
+| `]h` / `[h` | Next / previous Git hunk |
+| `<leader>ghs` / `<leader>ghr` | Stage / reset hunk (visual mode supported) |
+| `<leader>ghS` / `<leader>ghR` | Stage / reset current buffer |
+| `<leader>ghp` / `<leader>ghb` | Preview hunk / show line blame |
+| `ih` | Git hunk text object in operator-pending and visual modes |
 | `<leader>du` | Toggle Dadbod database UI |
 | `<leader>ls` / `<leader>lS` | Restore last / directory session |
 | `<leader>n` | Notification history |

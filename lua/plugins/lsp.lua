@@ -12,7 +12,7 @@ return {
 		event = "VeryLazy",
 		dependencies = "williamboman/mason.nvim",
 		opts = {
-			ensure_installed = { "ts_ls", "pyright", "clangd", "gopls", "rust_analyzer", "sqlls" },
+			ensure_installed = { "ts_ls", "pyright", "clangd", "gopls", "rust_analyzer", "sqlls", "lua_ls" },
 			automatic_enable = false,
 		},
 	},
@@ -25,9 +25,24 @@ return {
 				"prettier",
 				"clang-format",
 				"stylua",
-				{ "black", condition = function() return vim.fn.executable("python3") == 1 or vim.fn.executable("python") == 1 end },
-				{ "gofumpt", condition = function() return vim.fn.executable("go") == 1 end },
-				{ "sqlfmt", condition = function() return vim.fn.executable("python3") == 1 or vim.fn.executable("python") == 1 end },
+				{
+					"black",
+					condition = function()
+						return vim.fn.executable("python3") == 1 or vim.fn.executable("python") == 1
+					end,
+				},
+				{
+					"gofumpt",
+					condition = function()
+						return vim.fn.executable("go") == 1
+					end,
+				},
+				{
+					"sqlfmt",
+					condition = function()
+						return vim.fn.executable("python3") == 1 or vim.fn.executable("python") == 1
+					end,
+				},
 			},
 			start_delay = 3000,
 			debounce_hours = 5,
@@ -35,7 +50,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		event = "VeryLazy",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
 			"saghen/blink.cmp",
@@ -59,6 +74,15 @@ return {
 				},
 				rust_analyzer = { capabilities = caps },
 				sqlls = { capabilities = caps },
+				lua_ls = {
+					capabilities = caps,
+					settings = {
+						Lua = {
+							completion = { callSnippet = "Replace" },
+							workspace = { checkThirdParty = false },
+						},
+					},
+				},
 			}
 
 			local bins = {
@@ -68,6 +92,7 @@ return {
 				gopls = "gopls",
 				rust_analyzer = "rust-analyzer",
 				sqlls = "sql-language-server",
+				lua_ls = "lua-language-server",
 			}
 
 			for srv, opts in pairs(servers) do
