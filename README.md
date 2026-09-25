@@ -6,7 +6,7 @@ A minimal, cross-platform Neovim setup for TypeScript/JavaScript, Go, Python, C/
 
 On first start, lazy.nvim installs plugins. Mason then installs the configured language servers and formatter tools it can manage. Use `:MasonToolsInstall` to retry immediately or `:Mason` to inspect status.
 
-The configuration deliberately does not install operating-system dependencies: language runtimes, compilers, database drivers, Git, `fd`, or `ripgrep` must be installed once on each machine.
+The configuration deliberately does not install operating-system dependencies: language runtimes, compilers, database drivers, Git, `fd`, `ripgrep`, the Treesitter CLI, and Lazygit must be installed once on each machine.
 
 ## Requirements
 
@@ -15,6 +15,7 @@ The configuration deliberately does not install operating-system dependencies: l
 - `tree-sitter` CLI and a C compiler for Treesitter parser installation
 - `fd` for Snacks Explorer
 - `ripgrep` for live grep
+- Lazygit for `<leader>gg`
 - A Nerd Font is recommended for icons
 
 Install the language runtime only for languages you use:
@@ -33,18 +34,27 @@ For Rust, also run `rustup component add rustfmt`.
 
 ### Example prerequisite installs
 
+On macOS and Debian/Ubuntu, run `make install-prerequisites` to detect the package manager and install the complete set. The platform-specific commands below are equivalent.
+
 macOS (Homebrew):
 
 ```sh
-brew install neovim git fd ripgrep node python go rustup llvm
+brew install neovim git fd ripgrep tree-sitter lazygit node python go rustup llvm
 rustup default stable
 rustup component add rustfmt
+```
+
+Install Apple's C compiler if it is not already available:
+
+```sh
+xcode-select --install
 ```
 
 Ubuntu/Debian:
 
 ```sh
-sudo apt install neovim git fd-find ripgrep nodejs npm python3 golang rustup clangd clang-format
+sudo apt-get update
+sudo apt-get install -y neovim git build-essential fd-find ripgrep tree-sitter-cli lazygit nodejs npm python3 golang rustup clangd clang-format
 rustup default stable
 rustup component add rustfmt
 ```
@@ -52,7 +62,7 @@ rustup component add rustfmt
 Windows (PowerShell with winget):
 
 ```powershell
-winget install Neovim.Neovim Git.Git sharkdp.fd BurntSushi.ripgrep.MSVC OpenJS.NodeJS.LTS Python.Python.3.13 GoLang.Go Rustlang.Rustup LLVM.LLVM
+winget install Neovim.Neovim Git.Git sharkdp.fd BurntSushi.ripgrep.MSVC tree-sitter.tree-sitter jesseduffield.lazygit OpenJS.NodeJS.LTS Python.Python.3.13 GoLang.Go Rustlang.Rustup LLVM.LLVM
 rustup default stable
 rustup component add rustfmt
 ```
