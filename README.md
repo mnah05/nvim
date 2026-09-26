@@ -12,6 +12,7 @@ The configuration deliberately does not install operating-system dependencies: l
 
 - Neovim 0.12+
 - Git
+- `unzip` — Mason shells out to it to extract packaged servers/formatters (clangd, stylua, …)
 - `tree-sitter` CLI and a C compiler for Treesitter parser installation
 - `fd` for Snacks Explorer
 - `ripgrep` for live grep
@@ -28,7 +29,7 @@ Install the language runtime only for languages you use:
 | C / C++ | LLVM/clangd | clangd | clang-format |
 | Rust | Rustup | rust-analyzer | rustfmt |
 | SQL | Database CLI/driver only when using Dadbod | sqlls | sqlfmt |
-| Lua | — | — | Stylua |
+| Lua | — | `lua_ls` | Stylua |
 
 For Rust, also run `rustup component add rustfmt`.
 
@@ -39,7 +40,7 @@ On macOS and Debian/Ubuntu, run `make install-prerequisites` to detect the packa
 macOS (Homebrew):
 
 ```sh
-brew install neovim git fd ripgrep tree-sitter lazygit node python go rustup llvm
+brew install neovim git fd ripgrep tree-sitter-cli lazygit node python go rustup llvm unzip
 rustup default stable
 rustup component add rustfmt
 ```
@@ -54,7 +55,7 @@ Ubuntu/Debian:
 
 ```sh
 sudo apt-get update
-sudo apt-get install -y neovim git build-essential fd-find ripgrep tree-sitter-cli lazygit nodejs npm python3 golang rustup clangd clang-format
+sudo apt-get install -y neovim git build-essential fd-find ripgrep tree-sitter-cli lazygit nodejs npm python3 golang rustup clangd clang-format unzip
 rustup default stable
 rustup component add rustfmt
 ```

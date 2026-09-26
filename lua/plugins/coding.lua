@@ -1,31 +1,35 @@
+-- Parsers to install. Kept at module scope so `build` (runs once, on install)
+-- can use them. Installing from `config` would re-run on every BufReadPre.
+local parsers = {
+	"lua",
+	"vim",
+	"vimdoc",
+	"typescript",
+	"tsx",
+	"javascript",
+	"python",
+	"c",
+	"cpp",
+	"go",
+	"rust",
+	"sql",
+	"markdown",
+	"markdown_inline",
+	"json",
+	"yaml",
+	"bash",
+	"comment",
+}
+
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
+		build = function()
+			require("nvim-treesitter").install(parsers)
+		end,
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
-			local parsers = {
-				"lua",
-				"vim",
-				"vimdoc",
-				"typescript",
-				"tsx",
-				"javascript",
-				"python",
-				"c",
-				"cpp",
-				"go",
-				"rust",
-				"sql",
-				"markdown",
-				"markdown_inline",
-				"json",
-				"yaml",
-				"bash",
-				"comment",
-			}
 			require("nvim-treesitter").setup({})
-			require("nvim-treesitter").install(parsers)
 			vim.api.nvim_create_autocmd("FileType", {
 				callback = function(args)
 					if pcall(vim.treesitter.start, args.buf) then
@@ -50,8 +54,17 @@ return {
 		},
 	},
 
-	{ "echasnovski/mini.pairs", event = "InsertEnter", opts = {} },
-	{ "echasnovski/mini.surround", opts = {} },
+	-- mini.nvim is the single source for mini.* modules. The standalone
+	-- mini.pairs / mini.surround repos ship the same `mini.pairs` module and
+	-- shadow each other in 'runtimepath', so use the meta-plugin instead.
+	{
+		"echasnovski/mini.nvim",
+		event = "InsertEnter",
+		config = function()
+			require("mini.pairs").setup()
+			require("mini.surround").setup()
+		end,
+	},
 
 	-- Formatting
 	{
@@ -74,6 +87,10 @@ return {
 				javascript = { "prettierd", "prettier", stop_after_first = true },
 				javascriptreact = { "prettierd", "prettier", stop_after_first = true },
 				json = { "prettierd", "prettier", stop_after_first = true },
+				yaml = { "prettierd", "prettier", stop_after_first = true },
+				markdown = { "prettierd", "prettier", stop_after_first = true },
+				bash = { "shellharden" },
+				sh = { "shellharden" },
 				html = { "prettierd", "prettier", stop_after_first = true },
 				css = { "prettierd", "prettier", stop_after_first = true },
 				python = { "black" },

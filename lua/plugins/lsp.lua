@@ -1,7 +1,12 @@
 return {
+	-- Must load eagerly (not on `cmd = "Mason"`): Mason.setup() is what prepends
+	-- Mason's bin/ to $PATH, and the nvim-lspconfig spec below gates on
+	-- vim.fn.executable() at BufReadPre time. Lazy-loading Mason on the command
+	-- means the check runs first and vim.lsp.enable() is never called.
 	{
 		"williamboman/mason.nvim",
-		cmd = "Mason",
+		lazy = false,
+		priority = 1000,
 		keys = {
 			{ "<leader>lm", "<cmd>Mason<cr>", desc = "LSP: manage servers" },
 		},
@@ -12,7 +17,19 @@ return {
 		event = "VeryLazy",
 		dependencies = "williamboman/mason.nvim",
 		opts = {
-			ensure_installed = { "ts_ls", "pyright", "clangd", "gopls", "rust_analyzer", "sqlls", "lua_ls" },
+			ensure_installed = {
+				"ts_ls",
+				"pyright",
+				"clangd",
+				"gopls",
+				"rust_analyzer",
+				"sqlls",
+				"lua_ls",
+				"jsonls",
+				"yamlls",
+				"bashls",
+				"marksman",
+			},
 			automatic_enable = false,
 		},
 	},
@@ -25,6 +42,7 @@ return {
 				"prettier",
 				"clang-format",
 				"stylua",
+				"shellharden",
 				{
 					"black",
 					condition = function()
@@ -83,6 +101,10 @@ return {
 						},
 					},
 				},
+				jsonls = { capabilities = caps },
+				yamlls = { capabilities = caps },
+				bashls = { capabilities = caps },
+				marksman = { capabilities = caps },
 			}
 
 			local bins = {
@@ -93,6 +115,10 @@ return {
 				rust_analyzer = "rust-analyzer",
 				sqlls = "sql-language-server",
 				lua_ls = "lua-language-server",
+				jsonls = "vscode-json-language-server",
+				yamlls = "yaml-language-server",
+				bashls = "bash-language-server",
+				marksman = "marksman",
 			}
 
 			for srv, opts in pairs(servers) do

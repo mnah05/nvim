@@ -11,13 +11,13 @@ install-prerequisites:
 	fi
 
 install-prerequisites-macos:
-	brew install neovim git fd ripgrep tree-sitter lazygit node python go rustup llvm
+	brew install neovim git fd ripgrep tree-sitter-cli lazygit node python go rustup llvm unzip
 	rustup default stable
 	rustup component add rustfmt
 
 install-prerequisites-debian:
 	sudo apt-get update
-	sudo apt-get install -y neovim git build-essential fd-find ripgrep tree-sitter-cli lazygit nodejs npm python3 golang rustup clangd clang-format
+	sudo apt-get install -y neovim git build-essential fd-find ripgrep tree-sitter-cli lazygit nodejs npm python3 golang rustup clangd clang-format unzip
 	rustup default stable
 	rustup component add rustfmt
 
