@@ -1,5 +1,5 @@
-# Committed to keep plugin versions pinned (see lazy.nvim docs)
-# lazy-lock.json
+# Lazy lockfile is local-only noise (plugin pins drift per machine)
+lazy-lock.json
 
 # Editor/OS noise
 .DS_Store
