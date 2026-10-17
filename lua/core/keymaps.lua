@@ -58,8 +58,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>cR", function()
 			rename_file(args.buf)
 		end, vim.tbl_extend("force", opts, { desc = "Rename file" }))
-		vim.keymap.set("n", "<leader>ds", vim.lsp.buf.document_symbol, opts)
-		vim.keymap.set("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts)
+		vim.keymap.set("n", "<leader>cs", vim.lsp.buf.document_symbol, opts)
+		vim.keymap.set("n", "<leader>cS", vim.lsp.buf.workspace_symbol, opts)
 		vim.keymap.set(
 			"n",
 			"<leader>cl",
@@ -90,6 +90,6 @@ map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic" })
 map("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Diagnostic list" })
 
 -- Telescope
-map("n", "<leader>f", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
 map("n", "<leader>s", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" })
-map("n", "<leader>b", "<cmd>Telescope buffers<cr>", { desc = "Buffers" })
+map("n", "<leader>bb", "<cmd>Telescope buffers<cr>", { desc = "Buffers" })

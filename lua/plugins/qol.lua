@@ -171,7 +171,7 @@ return {
 				desc = "Diffview close",
 			},
 			{
-				"<leader>gh",
+				"<leader>gH",
 				function()
 					require("diffview").file_history()
 				end,
