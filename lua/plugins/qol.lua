@@ -45,6 +45,10 @@ return {
 				timeout = 3000,
 			},
 			scroll = { enabled = true },
+			terminal = {
+				enabled = true,
+				win = { position = "float" },
+			},
 			words = {
 				enabled = true,
 				lsp = {
@@ -88,6 +92,24 @@ return {
 					Snacks.lazygit()
 				end,
 				desc = "Lazygit",
+			},
+			{
+				"<leader>tt",
+				function()
+					Snacks.terminal.toggle(nil, { win = { position = "float" } })
+				end,
+				desc = "Toggle floating terminal",
+			},
+			{
+				"<leader>ct",
+				mode = { "n", "t" },
+				function()
+					local term = Snacks.terminal.get(nil, { create = false })
+					if term and term:valid() then
+						term:hide()
+					end
+				end,
+				desc = "Close floating terminal",
 			},
 		},
 	},
